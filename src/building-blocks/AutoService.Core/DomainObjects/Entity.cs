@@ -2,11 +2,15 @@
 {
     public abstract class Entity
     {
-        protected Guid Id { get; private set; }
+        public Guid Id { get; private set; }
         protected Entity()
         {
             Id = Guid.NewGuid();
         }
+        public DateTime CreationDate { get; private set; }
+        public DateTime UpdateDate { get; private set; }
+        public void SetCreationDate() => CreationDate = DateTime.Now;
+        public void SetUpdateDate() => UpdateDate = DateTime.Now;
 
         #region Comparisons
 

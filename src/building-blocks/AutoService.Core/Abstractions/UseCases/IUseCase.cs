@@ -1,7 +1,9 @@
-﻿namespace AutoService.Core.Abstractions.UseCases
+﻿using AutoService.Core.Web;
+
+namespace AutoService.Core.Abstractions.UseCases
 {
-    public interface IUseCase
+    public interface IUseCase<TParameter, TResult>
     {
-        Task Execute();
+        Task<RequestResult<TResult>> Execute(TParameter parameter);
     }
 }

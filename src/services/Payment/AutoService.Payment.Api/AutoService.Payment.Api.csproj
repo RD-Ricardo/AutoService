@@ -4,9 +4,6 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>161564a2-9e8a-4b3e-8b7c-e280f5bceedd</UserSecretsId>
-    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>..\..\..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\AutoService.Payment.Application\AutoService.Payment.Application.csproj" />
+    <ProjectReference Include="..\AutoService.Payment.Infrastructure\AutoService.Payment.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
