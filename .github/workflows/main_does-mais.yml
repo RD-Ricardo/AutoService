@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
       
       - name: List contents of working directory
-        run: cd src
+        run: cd src ls
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
