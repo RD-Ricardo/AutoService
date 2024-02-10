@@ -24,10 +24,10 @@ jobs:
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release /myapp
       
       - name: dotnet publish
-        working-directory: ./src/services/ProfessionalAccount/AutoService.ProfessionalAccount.Api/myapp
+        working-directory: .\src\services\Customer\AutoService.Customer.Api\myapp
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
