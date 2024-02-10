@@ -24,7 +24,7 @@ jobs:
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
-        run: dotnet build --configuration Release .\src\services\Customer\AutoService.Customer.Api\myapp
+        run: dotnet build --configuration Release .\src\services\Customer\AutoService.Customer.Api\AutoService.Customer.Api.csproj
       
       - name: dotnet publish
         working-directory: .\src\services\Customer\AutoService.Customer.Api\myapp
@@ -65,4 +65,8 @@ jobs:
           app-name: 'does-mais'
           slot-name: 'Production'
           package: .
+  
+      - name: List contents of working directory
+        run: ls -al
+
           
