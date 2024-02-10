@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        working-directory: ./
+        working-directory: .\D:\a\AutoService\AutoService\src\services\Customer
         run: dotnet build --configuration Release
       
       - name: dotnet publish
