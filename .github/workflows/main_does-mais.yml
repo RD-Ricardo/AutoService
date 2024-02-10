@@ -25,7 +25,7 @@ jobs:
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
-        run: ls
+        run: dotnet build --configuration Release
       
       - name: dotnet publish
         working-directory: .\src\services\Customer\AutoService.Customer.Api
