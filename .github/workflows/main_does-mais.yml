@@ -23,11 +23,11 @@ jobs:
           include-prerelease: true
       
       - name: List contents of working directory
-        run: ls
+        run: .\src ls
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
-        run: dotnet build --configuration Release .\src\services\Customer\AutoService.Customer.Api\AutoService.Customer.Api.csproj\myapp
+        run: dotnet build --configuration Release .\src\services\Customer\AutoService.Customer.Api\AutoService.Customer.Api.csproj
       
       - name: dotnet publish
         working-directory: .\src\services\Customer\AutoService.Customer.Api
