@@ -23,9 +23,11 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
+        working-directory: ./src/services/ProfessionalAccount/AutoService.ProfessionalAccount.Api/myapp
         run: dotnet build --configuration Release
-
+      
       - name: dotnet publish
+        working-directory: ./src/services/ProfessionalAccount/AutoService.ProfessionalAccount.Api/myapp
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
