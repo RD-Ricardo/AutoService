@@ -24,11 +24,14 @@ jobs:
 
       - name: Build with dotnet
         working-directory: .\src\services\Customer\AutoService.Customer.Api
-        run: dotnet build --configuration Release .\src\services\Customer\AutoService.Customer.Api\AutoService.Customer.Api.csproj
+        run: dotnet build --configuration Release ./src/services/Customer/AutoService.Customer.Api/AutoService.Customer.Api.csproj
       
       - name: dotnet publish
         working-directory: .\src\services\Customer\AutoService.Customer.Api\myapp
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        
+      - name: List contents of working directory
+        run: ls -al
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -66,7 +69,6 @@ jobs:
           slot-name: 'Production'
           package: .
   
-      - name: List contents of working directory
-        run: ls -al
+     
 
           
