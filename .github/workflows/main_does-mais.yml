@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        working-directory: services\ProfessionalAccount\AutoService.ProfessionalAccount.Api
+        working-directory: ./
         run: dotnet build --configuration Release
       
       - name: dotnet publish
