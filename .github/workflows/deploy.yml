@@ -34,6 +34,18 @@ jobs:
       - name: Dotnet Build
         run: dotnet build $SOLUTION -c Release
         
+      - name: Test
+        run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Log de testes
+          path: '**/test-results.trx'
+          reporter: dotnet-trx
+          fail-on-error: true
+          
       - name: Dotnet publish
         working-directory: ./src/AutoService.Api
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
@@ -43,6 +55,7 @@ jobs:
         with:
           name: .net-app
           path: ${{env.DOTNET_ROOT}}/myapp
+
         
   test:
     needs: build-application
@@ -63,17 +76,7 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: 8.x
-      - name: Test
-        run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
-
-      - name: Test Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Log de testes
-          path: '**/test-results.trx'
-          reporter: dotnet-trx
-          fail-on-error: true
+     
   
   deploy:
     runs-on: ubuntu-latest
