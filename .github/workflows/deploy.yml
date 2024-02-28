@@ -9,7 +9,6 @@ on:
       - main
 
 jobs:
-
   build-test:
     name: Build & Test
     env:
@@ -20,23 +19,40 @@ jobs:
     permissions:
         id-token: write
         contents: read
-        checks: write
-
 
     steps:
-   
       - uses: actions/checkout@v2
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
+        
         with:
           dotnet-version: 8.x
-
       - name: Restore dependencies
         run: dotnet restore $SOLUTION
 
       - name: Build
         run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
+        
+  test:  
+    name: Test
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: 'AutoService.sln'
+    runs-on: ubuntu-latest
+     
+    permissions:
+        id-token: write
+        contents: read
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        
+        with:
+          dotnet-version: 8.x
+      - name: Restore dependencies
+        run: dotnet restore $SOLUTION
 
       - name: Test
         run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
