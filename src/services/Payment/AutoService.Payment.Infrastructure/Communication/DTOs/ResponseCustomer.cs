@@ -1,6 +1,6 @@
-﻿namespace AutoService.Payment.Infrastructure.Communication.DTOs
+﻿namespace AutoService.
 {
-    public class ResponseCustomer
+    public class ResponseCustomerDTO
     {
         public string @object { get; set; }
         public bool hasMore { get; set; }

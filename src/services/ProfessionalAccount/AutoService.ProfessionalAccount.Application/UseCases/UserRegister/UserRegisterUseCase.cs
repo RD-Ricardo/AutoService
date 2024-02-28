@@ -31,7 +31,7 @@ namespace AutoService.ProfessionalAccount.Application.UseCases.RegisterUser
             var result = await _professionalRepository.UnitOfWork.Commit();
 
             if (!result)
-                return new RequestResult<string>(false, null, "erro");
+                return new RequestResult<string>(false, null, new List<string>() { "erro" });
 
             return new RequestResult<string>(true, professional.Id.ToString());
         }

@@ -54,7 +54,7 @@ namespace AutoService.Payment.Infrastructure.Communication
                 var response = await client.PostAsync(request);
 
                 if (!response.IsSuccessStatusCode)
-                    return new RequestResult<ResponsePayment>(false, null, "[err] - assas");
+                    return new RequestResult<ResponsePayment>(false, null, new List<string>() { "[err] - assas" });
 
                 var responsePayment = JsonSerializer.Deserialize<ResponsePayment>(response.Content);
 

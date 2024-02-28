@@ -26,7 +26,7 @@ namespace AutoService.ProfessionalAccount.Application.UseCases.ContractFullAcces
             var professional = await _professionalRepository.FindByIdAsync(parameter);
 
             if(professional.Permission == Domain.Enums.PermissionEnum.Admin)
-                return new RequestResult<bool>(false, false, "Error professional have access full");
+                return new RequestResult<bool>(false, false, new List<string>() { "Error professional have access full" });
 
             var request = new ContractFullAcecssEvent(professional.Id.ToString(), 
                 professional.Email,
@@ -40,7 +40,7 @@ namespace AutoService.ProfessionalAccount.Application.UseCases.ContractFullAcces
             var success = await _bus.Rpc.RequestAsync<ContractFullAcecssEvent, ResponseMessage>(request);
 
             if (!success.ValidationResult)
-                return new RequestResult<bool>(false, false, "Error process payment");
+                return new RequestResult<bool>(false, false, new List<string>() { "Error process payment" });
 
             professional.ChangeAcecssToFull();
 

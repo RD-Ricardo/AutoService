@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Customer\UpdateCustomer\" />
+    <Folder Include="Commands\Professional\UpdateProfessional\" />
+    <Folder Include="Commands\Service\CreateService\" />
+    <Folder Include="Commands\Service\UpdateService\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoService.Core\AutoService.Core.csproj" />
+    <ProjectReference Include="..\AutoService.Domain\AutoService.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -16,7 +16,7 @@ namespace AutoService.ProfessionalAccount.Api.Controllers
             var result = await _contractFullAccessUseCase.Execute(this.ReturnUserId());
 
             if (!result.Success)
-                return BadRequest(result.ErrorMessage);
+                return BadRequest(result.ErrorsMessages);
 
             return Ok(result);
         }

@@ -19,7 +19,7 @@ namespace AutoService.ProfessionalAccount.Api.Controllers
             var result = await _userLoginUseCase.Execute(userLoginInputModel);
 
             if (!result.Success)
-                return BadRequest(result.ErrorMessage);
+                return BadRequest(result.ErrorsMessages);
 
             return Ok(result.Data);
         }
@@ -34,7 +34,7 @@ namespace AutoService.ProfessionalAccount.Api.Controllers
             var result = await _userRegisterUseCase.Execute(userRegisterInputModel);
 
             if (!result.Success)
-                return BadRequest(result.ErrorMessage);
+                return BadRequest(result.ErrorsMessages);
 
             return Ok(result);
         }
