@@ -49,3 +49,32 @@ jobs:
           path: '**/test-results.trx'
           reporter: dotnet-trx
           fail-on-error: true
+  deploy:
+    runs-on: windows-latest
+    needs: build-test
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B3869F532ACB4FDC850BDF808DF305CA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_06504290B9E44DBC9EA2728C572FC72D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_00358A1FA9DE422AAB427022E4DFABDE }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'does-mais'
+          slot-name: 'Production'
+          package: .
