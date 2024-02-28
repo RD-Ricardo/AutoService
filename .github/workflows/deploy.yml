@@ -35,7 +35,7 @@ jobs:
         run: dotnet build $SOLUTION -c Release
         
       - name: Dotnet publish
-        working-directory: .\src\AutoService.Api
+        working-directory: ./src/AutoService.Api
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
