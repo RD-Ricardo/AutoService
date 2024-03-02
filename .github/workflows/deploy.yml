@@ -1,0 +1,90 @@
+name: Pipeline 
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+ build-test:
+    runs-on: ubuntu-latest
+    name: Build & Test
+    
+    env:
+      BUILD_CONFIG: 'Release'
+      SOLUTION: 'AutoService.sln'
+     
+    permissions:
+        id-token: write
+        contents: read
+        checks: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 8.x
+
+      - name: Restore dependencies
+        run: dotnet restore $SOLUTION
+
+      - name: Build
+        run: dotnet build $SOLUTION --configuration $BUILD_CONFIG
+
+      - name: Test
+        run: dotnet test $SOLUTION --configuration $BUILD_CONFIG --logger "trx;LogFileName=test-results.trx" || true
+
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+          name: Logs Tests
+          path: '**/test-results.trx'
+          reporter: dotnet-trx
+          fail-on-error: true
+          
+      - name: Dotnet publish
+        working-directory: ./src/AutoService.Api
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
+        with:
+          name: .net-app
+          path: ${{env.DOTNET_ROOT}}/myapp
+  
+ deploy:
+    if: github.event_name == 'push' && contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
+    runs-on: ubuntu-latest
+    needs: build-test
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+      
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B3869F532ACB4FDC850BDF808DF305CA }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_06504290B9E44DBC9EA2728C572FC72D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_00358A1FA9DE422AAB427022E4DFABDE }}
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'does-mais'
+          slot-name: 'Production'
+          package: .
