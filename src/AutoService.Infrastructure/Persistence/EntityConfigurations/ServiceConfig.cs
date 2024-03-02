@@ -8,7 +8,18 @@ namespace AutoService.Infrastructure.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {
-            throw new NotImplementedException();
+            //builder.HasData(new[] { 
+
+            //        new P
+            //} );
+
+            builder.Property(x => x.Id)
+                .HasConversion<string>();
+
+            builder
+                .HasIndex(s => new { s.Id })
+                .IsUnique()
+                .HasFilter("Id not null");
         }
     }
 }
