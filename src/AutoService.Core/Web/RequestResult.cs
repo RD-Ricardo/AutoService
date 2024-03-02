@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-
-namespace AutoService.Core.Web
+﻿namespace AutoService.Core.Web
 {
     public class RequestResult<TResult>
     {

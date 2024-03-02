@@ -2,7 +2,7 @@
 using AutoService.Domain.Enums;
 using AutoService.Infrastructure.Communication.DTOs;
 
-namespace AutoService.Infrastructure.Facade
+namespace AutoService.Infrastructure.Facade.MethodsPayments
 {
     public class PaymentPix : IPaymentFacade
     {

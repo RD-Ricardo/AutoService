@@ -31,7 +31,10 @@ namespace AutoService.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.UseCollation("");
+            
+            modelBuilder
+                .HasSequence<int>("", "");
         }
     }
 }

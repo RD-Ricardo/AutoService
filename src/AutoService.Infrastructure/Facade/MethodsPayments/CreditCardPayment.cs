@@ -1,6 +1,6 @@
 ﻿using AutoService.Domain.Entities;
 
-namespace AutoService.Infrastructure.Facade
+namespace AutoService.Infrastructure.Facade.MethodsPayments
 {
     public class CreditCardPayment : IPaymentFacade
     {
