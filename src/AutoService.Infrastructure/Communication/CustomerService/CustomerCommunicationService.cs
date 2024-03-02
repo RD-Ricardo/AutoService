@@ -1,5 +1,4 @@
 ﻿using AutoService.Core.Web.Extensions;
-using AutoService.Infrastructure.Communication.Customer;
 using AutoService.Infrastructure.Communication.DTOs;
 using AutoService.Payment.Infrastructure.Communication.DTOs;
 using Microsoft.Extensions.Options;

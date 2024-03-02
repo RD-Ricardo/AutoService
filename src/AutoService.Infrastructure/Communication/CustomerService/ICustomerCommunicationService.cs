@@ -1,7 +1,7 @@
 ﻿using AutoService.Infrastructure.Communication.DTOs;
 using AutoService.Payment.Infrastructure.Communication.DTOs;
 
-namespace AutoService.Infrastructure.Communication.Customer
+namespace AutoService.Infrastructure.Communication.CustomerService
 {
     public interface ICustomerCommunicationService
     {
