@@ -5,7 +5,7 @@ namespace AutoService.Core.Abstractions.CQRS.Handlers
 {
     public abstract class CommandHandler<TCommand, TResult> : IRequestHandler<TCommand, RequestResult<TResult>> where TCommand : Command<TResult>
     {
-        public abstract Task<RequestResult<TResult>> Handle(TCommand request, CancellationToken cancellationToken);
+        public abstract Task<RequestResult<TResult>> Handle(TCommand message, CancellationToken cancellationToken);
 
         public RequestResult<TResult> Success()
         {
