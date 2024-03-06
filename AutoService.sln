@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoService.Domain", "src\A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{229ADCF5-EF10-41EA-B914-6FD59310D311}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Domain.Tests", "tests\AutoService.Domain.Tests\AutoService.Domain.Tests.csproj", "{F52FF174-AAF3-4793-B2EC-05D531F8E254}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoService.Domain.Tests", "tests\AutoService.Domain.Tests\AutoService.Domain.Tests.csproj", "{F52FF174-AAF3-4793-B2EC-05D531F8E254}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Application.Tests", "tests\AutoService.Application.Tests\AutoService.Application.Tests.csproj", "{2E87FA99-5380-4999-BA77-EDB028872E40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoService.Application.Tests", "tests\AutoService.Application.Tests\AutoService.Application.Tests.csproj", "{2E87FA99-5380-4999-BA77-EDB028872E40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoService.Infrastructure.Tests", "tests\AutoService.Infrastructure.Tests\AutoService.Infrastructure.Tests.csproj", "{92066033-73E4-4BF9-94DE-99BBA258CA55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{2E87FA99-5380-4999-BA77-EDB028872E40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E87FA99-5380-4999-BA77-EDB028872E40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E87FA99-5380-4999-BA77-EDB028872E40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92066033-73E4-4BF9-94DE-99BBA258CA55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92066033-73E4-4BF9-94DE-99BBA258CA55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92066033-73E4-4BF9-94DE-99BBA258CA55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92066033-73E4-4BF9-94DE-99BBA258CA55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{2034019F-36F1-4D58-95E0-57D517501F72} = {A1F426FD-2603-445E-946F-6E024896A65D}
 		{F52FF174-AAF3-4793-B2EC-05D531F8E254} = {229ADCF5-EF10-41EA-B914-6FD59310D311}
 		{2E87FA99-5380-4999-BA77-EDB028872E40} = {229ADCF5-EF10-41EA-B914-6FD59310D311}
+		{92066033-73E4-4BF9-94DE-99BBA258CA55} = {229ADCF5-EF10-41EA-B914-6FD59310D311}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E1A8967-E8B9-4370-9217-DBDF85559E73}
