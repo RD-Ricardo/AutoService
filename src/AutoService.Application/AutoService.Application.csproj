@@ -9,9 +9,11 @@
   <ItemGroup>
     <Folder Include="Commands\Customer\UpdateCustomer\" />
     <Folder Include="Commands\Professional\UpdateProfessional\" />
-    <Folder Include="Commands\Service\CreateService\" />
-    <Folder Include="Commands\Service\UpdateService\" />
     <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
   </ItemGroup>
 
   <ItemGroup>
