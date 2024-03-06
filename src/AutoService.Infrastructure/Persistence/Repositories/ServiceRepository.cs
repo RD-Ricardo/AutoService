@@ -1,4 +1,5 @@
 ﻿using AutoService.Core.Data;
+using AutoService.Domain.Entities;
 using AutoService.Domain.Interfaces;
 
 namespace AutoService.Infrastructure.Persistence.Repositories
@@ -11,5 +12,10 @@ namespace AutoService.Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
         public IUnitOfWork UnitOfWork => _dbContext;
+
+        public async Task CreateServiceAsync(Service service)
+        {
+            await _dbContext.AddAsync(service);
+        }
     }
 }
