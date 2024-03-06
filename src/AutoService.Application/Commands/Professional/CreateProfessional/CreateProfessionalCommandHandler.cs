@@ -1,4 +1,5 @@
-﻿using AutoService.Core.Abstractions.CQRS.Handlers;
+﻿using AutoService.Application.Extensions;
+using AutoService.Core.Abstractions.CQRS.Handlers;
 using AutoService.Core.Web;
 using AutoService.Core.Web.Authentication;
 using AutoService.Domain.Interfaces;
@@ -18,14 +19,14 @@ namespace AutoService.Application.Commands.Professional.CreateProfessional
             _professionalRepository = professionalRepository;
         }
 
-        public override async Task<RequestResult<Unit>> Handle(CreateProfessionalCommand request, CancellationToken cancellationToken)
+        public override async Task<RequestResult<Unit>> Handle(CreateProfessionalCommand message, CancellationToken cancellationToken)
         {
-            if (!request.Validate())
-                return Fail(request.ValidationResult.ReturnErros());
+            if (!message.Validate())
+                return Fail(message.ValidationResult.ReturnErros());
 
-            var passwordHash = _authenticateService.ComputeSha256Hash(request.Password);
+            var passwordHash = _authenticateService.ComputeSha256Hash(message.Password);
 
-            Domain.Entities.Professional professional = new(request.Name, passwordHash, request.Email, request.CPF);
+            Domain.Entities.Professional professional = new(message.Name, passwordHash, message.Email, message.CPF);
 
             await _professionalRepository.CreateAsync(professional);
 
@@ -33,11 +34,5 @@ namespace AutoService.Application.Commands.Professional.CreateProfessional
 
             return Success();
         }
-    }
-
-    public static class ValidationResultExtension
-    {
-        public static IEnumerable<string> ReturnErros(this FluentValidation.Results.ValidationResult validationResult) =>
-            validationResult.Errors.Select(e => e.ErrorMessage);
     }
 }
