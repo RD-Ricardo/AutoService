@@ -8,18 +8,25 @@ namespace AutoService.Infrastructure.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {
-            //builder.HasData(new[] { 
+            builder.HasKey(v => v.Id);
 
-            //        new P
-            //} );
+            builder.Property(v => v.Name)
+                .HasMaxLength(50)
+                .IsRequired();
 
-            builder.Property(x => x.Id)
-                .HasConversion<string>();
+            builder.Property(v => v.Description)
+                .HasMaxLength(100)
+                .IsRequired();
 
-            builder
-                .HasIndex(s => new { s.Id })
-                .IsUnique()
-                .HasFilter("Id not null");
+            builder.Property(v => v.ProfessionalId)
+               .IsRequired();
+
+            builder.Property(v => v.Value)
+               .HasColumnType<decimal>("decimal(6,2)")
+               .IsRequired();
+
+            builder.HasIndex(v => new { v.Id, v.Name })
+                .IsUnique();
         }
     }
 }
