@@ -12,7 +12,7 @@ namespace AutoService.Application.Commands.Service.UpdateService
         public decimal Value { get; private set; } = value;
         public override bool Validate()
         {
-            throw new NotImplementedException();
+            return true;
         }
     }
 }
