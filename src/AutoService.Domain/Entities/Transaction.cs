@@ -24,5 +24,7 @@ namespace AutoService.Domain.Entities
             NSU = nSU;
             PaymentId = paymentId;
         }
+
+        protected Transaction(){}
     }
 }

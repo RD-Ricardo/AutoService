@@ -8,7 +8,7 @@ namespace AutoService.Infrastructure.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Domain.Entities.Payment> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(x => x.Id);
         }
     }
 }

@@ -17,5 +17,10 @@ namespace AutoService.Infrastructure.Persistence.Repositories
         {
             await _dbContext.AddAsync(service);
         }
+
+        public Service UpdateServiceAsync(Service service)
+        {
+            return _dbContext.Update(service).Entity;
+        }
     }
 }

@@ -8,24 +8,24 @@ namespace AutoService.Infrastructure.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Service> builder)
         {
-            builder.HasKey(v => v.Id);
+            builder.HasKey(s => s.Id);
 
-            builder.Property(v => v.Name)
+            builder.Property(s => s.Name)
                 .HasMaxLength(50)
                 .IsRequired();
 
-            builder.Property(v => v.Description)
+            builder.Property(s => s.Description)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.Property(v => v.ProfessionalId)
+            builder.Property(s => s.ProfessionalId)
                .IsRequired();
 
-            builder.Property(v => v.Value)
-               .HasColumnType<decimal>("decimal(6,2)")
+            builder.Property(s => s.Value)
+               .HasColumnType("decimal(6,2)")
                .IsRequired();
 
-            builder.HasIndex(v => new { v.Id, v.Name })
+            builder.HasIndex(s => new { s.Id, s.Name })
                 .IsUnique();
         }
     }
