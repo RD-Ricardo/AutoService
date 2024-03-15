@@ -8,7 +8,7 @@ namespace AutoService.Infrastructure.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Transaction> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(t => t.Id);
         }
     }
 }

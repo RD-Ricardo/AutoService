@@ -1,7 +1,7 @@
 ﻿using AutoService.Core.Web;
 using AutoService.Payment.Infrastructure.Communication.DTOs;
 
-namespace AutoService.Infrastructure.Communication.DTOs
+namespace AutoService.Infrastructure.Communication
 {
     public interface IPaymentCommunicationService
     {

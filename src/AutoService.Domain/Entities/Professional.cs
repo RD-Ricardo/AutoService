@@ -5,6 +5,8 @@ namespace AutoService.Domain.Entities
 {
     public sealed class Professional : AggregateRoot
     {
+        protected Professional(){
+            }
         public string Name { get; private set; }
         public string Password { get; private set; }
         public string Email { get; private set; }

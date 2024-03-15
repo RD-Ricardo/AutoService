@@ -27,7 +27,7 @@ namespace AutoService.Infrastructure.Persistence.Repositories
 
         public Task<Professional> LoginAsync(string email, string passwordHash)
         {
-            return _dbContext.Professionals.SingleAsync(p => p.Email == email && p.Password == passwordHash);
+            return _dbContext.Professionals.SingleOrDefaultAsync(p => p.Email == email && p.Password == passwordHash);
         }
     }
 }

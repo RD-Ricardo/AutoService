@@ -1,6 +1,6 @@
 ﻿using AutoService.Domain.Entities;
 using AutoService.Domain.Enums;
-using AutoService.Infrastructure.Communication.DTOs;
+using AutoService.Infrastructure.Communication;
 
 namespace AutoService.Infrastructure.Facade.MethodsPayments
 {
