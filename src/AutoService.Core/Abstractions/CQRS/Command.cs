@@ -8,5 +8,10 @@ namespace AutoService.Core.Abstractions.CQRS
     {
         public ValidationResult ValidationResult { get; set; }
         public abstract bool Validate();
+
+        public Command()
+        {
+            ValidationResult = new ValidationResult();
+        }
     }
 }
