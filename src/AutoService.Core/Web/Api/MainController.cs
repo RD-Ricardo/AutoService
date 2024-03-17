@@ -14,7 +14,7 @@ namespace AutoService.Core.Web.Api
                if(Request.Method == "GET" || Request.Method == "PUT")
                     return request.Data is Unit or null ? Ok() : Ok(request.Data);
                else if (Request.Method == "POST")
-                    return Created(string.Empty, request.Data);
+                    return Created(string.Empty, request);
             }
 
             return BadRequest(new { Sucesso = false, MensagensErros = request.ErrorsMessages.ToArray() });
