@@ -1,5 +1,7 @@
 ﻿using AutoService.Core.Data;
+using AutoService.Domain.Entities;
 using AutoService.Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoService.Infrastructure.Persistence.Repositories
 {
@@ -12,5 +14,15 @@ namespace AutoService.Infrastructure.Persistence.Repositories
         }
 
         public IUnitOfWork UnitOfWork => _dbContext;
+
+        public async Task Create(Customer customer)
+        {
+            await _dbContext.AddAsync(customer);
+        }
+
+        public Task<Customer> FindByEmail(string email)
+        {
+           return _dbContext.Customers.FirstOrDefaultAsync(c => c.Email == email);
+        }
     }
 }
