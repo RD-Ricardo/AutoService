@@ -5,7 +5,13 @@ namespace AutoService.Application.Commands.Professional.ContractFullAccessProfes
 {
     public class ContractFullAccessProfessionalCommand : Command<Unit>
     {
-        public Guid ProfessionalId { get; set; }
+        public Guid ProfessionalId { get; private set; }
+
+        public ContractFullAccessProfessionalCommand(Guid professionalId)
+        {
+            ProfessionalId = professionalId;
+        }
+
         public override bool Validate()
         {
             throw new NotImplementedException();
