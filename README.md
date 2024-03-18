@@ -14,6 +14,6 @@ Sistema de gestão para oficinas mecânicas
 - [x] JWT
 - [x] RestSharp
 - [x] Clean Architecture
-- [] Docker
+- [x] Docker
 - [] Serilog
 - [] Auditoria por log
