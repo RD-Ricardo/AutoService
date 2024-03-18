@@ -1,6 +1,9 @@
 using AutoService.Application;
 using AutoService.Core.Web.Configuration;
 using AutoService.Infrastructure;
+using AutoService.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,17 +40,13 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseCors(x => {
     x.AllowAnyOrigin();
@@ -61,4 +60,11 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+{
+    var context = serviceScope.ServiceProvider.GetService<AutoServiceDbContext>();
+    context.Database.Migrate();
+}
+
 app.Run();
+

@@ -51,7 +51,7 @@ namespace AutoService.Infrastructure.Persistence
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connection = "server=localhost; port=3306; database=auto_service_db; Uid=root; Pwd=root1234;";
+            var connection = "server=db; port=3306; database=auto_service_db; Uid=root; Pwd=root1234;";
             optionsBuilder.UseMySql(connection, ServerVersion.AutoDetect(connection));
         }
     }
